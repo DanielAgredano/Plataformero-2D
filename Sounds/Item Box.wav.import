@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://hkxy363jm04y"
+path="res://.godot/imported/Item Box.wav-65de2b52a64a79573fb01330f3cc035c.sample"
+
+[deps]
+
+source_file="res://Sounds/Item Box.wav"
+dest_files=["res://.godot/imported/Item Box.wav-65de2b52a64a79573fb01330f3cc035c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

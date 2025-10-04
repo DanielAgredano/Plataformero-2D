@@ -1,0 +1,95 @@
+[gd_scene load_steps=11 format=3 uid="uid://tbv1ph4nadft"]
+
+[ext_resource type="Texture2D" uid="uid://bvaudnlhihr6e" path="res://Sprites/Enemies/Goomba.png" id="1_oqgwa"]
+[ext_resource type="Script" uid="uid://byl4radc8moye" path="res://Goomba.gd" id="1_q6pmm"]
+[ext_resource type="AudioStream" uid="uid://v45340573vb" path="res://Sounds/Squish.wav" id="3_71qdl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cso85"]
+atlas = ExtResource("1_oqgwa")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uj07a"]
+atlas = ExtResource("1_oqgwa")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7wpt"]
+atlas = ExtResource("1_oqgwa")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x8kb1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cso85")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uj07a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7wpt")
+}],
+"loop": true,
+"name": &"stomped",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g3k5b"]
+size = Vector2(48, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wy7v"]
+size = Vector2(52, 37)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_muaqt"]
+size = Vector2(36, 24)
+
+[node name="Goomba" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 5
+platform_on_leave = 2
+script = ExtResource("1_q6pmm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_x8kb1")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_g3k5b")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+priority = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -18.5)
+shape = SubResource("RectangleShape2D_6wy7v")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_muaqt")
+debug_color = Color(0.7, 0.35, 0, 0.419608)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="stomped" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_71qdl")
+volume_db = -17.0
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(-4.76837e-07, -4.76837e-07)
+scale = Vector2(2.4, 2.4)
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_area_2d_body_entered"]

@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://chvmvlqncu5lr"]
+
+[ext_resource type="Script" uid="uid://u3i20mfhk5pa" path="res://Coin.gd" id="1_ks75q"]
+[ext_resource type="Texture2D" uid="uid://txi7jstoi2qc" path="res://Coin.png" id="1_pkvlo"]
+[ext_resource type="AudioStream" uid="uid://cly4ecyprkmc0" path="res://Sounds/Coin.wav" id="3_xuckg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqv72"]
+atlas = ExtResource("1_pkvlo")
+region = Rect2(1, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58msl"]
+atlas = ExtResource("1_pkvlo")
+region = Rect2(18, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0kknb"]
+atlas = ExtResource("1_pkvlo")
+region = Rect2(35, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_niacv"]
+atlas = ExtResource("1_pkvlo")
+region = Rect2(52, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53tgy"]
+atlas = ExtResource("1_pkvlo")
+region = Rect2(69, 1, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xw3xg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pqv72")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58msl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0kknb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_niacv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53tgy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0tf4f"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ygtg7"]
+size = Vector2(48, 48)
+
+[node name="Coin" type="Area2D"]
+process_mode = 3
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_ks75q")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_xw3xg")
+autoplay = "default"
+frame_progress = 0.995622
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4.76837e-07, 0)
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_0tf4f")
+
+[node name="Activation" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="Shape" type="CollisionShape2D" parent="Activation"]
+shape = SubResource("RectangleShape2D_ygtg7")
+
+[node name="CoinSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_xuckg")
+volume_db = -16.87
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="Activation" to="." method="collect"]
+[connection signal="body_entered" from="Activation" to="." method="collect"]
+[connection signal="finished" from="CoinSound" to="." method="despawn"]

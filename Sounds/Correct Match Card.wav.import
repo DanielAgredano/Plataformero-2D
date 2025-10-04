@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bap64cfwtlr2h"
+path="res://.godot/imported/Correct Match Card.wav-10045a7183771da25accc1d62a4b0035.sample"
+
+[deps]
+
+source_file="res://Sounds/Correct Match Card.wav"
+dest_files=["res://.godot/imported/Correct Match Card.wav-10045a7183771da25accc1d62a4b0035.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

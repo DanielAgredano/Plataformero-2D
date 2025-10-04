@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ul6jxjbikio7"
+path="res://.godot/imported/Frog Mario Jump.wav-533197bb9e3388f24d5ffca873c97469.sample"
+
+[deps]
+
+source_file="res://Sounds/Frog Mario Jump.wav"
+dest_files=["res://.godot/imported/Frog Mario Jump.wav-533197bb9e3388f24d5ffca873c97469.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
